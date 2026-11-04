@@ -1,0 +1,26 @@
+version: '3'
+
+vars:
+  IGNITE: '{{.IGNITE | default "../ignite-lang"}}'
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  generate:
+    desc: Generate the parser in tree-sitter-ignite/src from grammar.js (ABI 14, which Helix 25.07 loads)
+    dir: tree-sitter-ignite
+    cmds:
+      - tree-sitter generate --abi 14
+
+  grammar:
+    desc: Generate the parser and parse every .ignite file under IGNITE's std/ and examples/ (non-zero on any ERROR or MISSING)
+    cmds:
+      - task: generate
+      - find {{.IGNITE}}/std {{.IGNITE}}/examples -name '*.ignite' -print0 | xargs -0 tree-sitter parse --quiet --grammar-path tree-sitter-ignite
+
+  query:
+    desc: Run every query over the .ignite files under IGNITE's std/ and examples/ (non-zero on an unknown node or capture)
+    cmds:
+      - for q in tree-sitter-ignite/queries/*.scm helix/queries/ignite/*.scm; do find {{.IGNITE}}/std {{.IGNITE}}/examples -name '*.ignite' -print0 | xargs -0 tree-sitter query --quiet --grammar-path tree-sitter-ignite "$q" > /dev/null || exit 1; done

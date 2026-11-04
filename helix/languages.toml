@@ -1,0 +1,15 @@
+[[language]]
+name = "ignite"
+scope = "source.ignite"
+file-types = ["ignite"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["ignite-lsp"]
+
+[[grammar]]
+name = "ignite"
+source = { git = "https://github.com/ignite-lang/ignite-helix", rev = "<after push>", subpath = "tree-sitter-ignite" }
+
+[language-server.ignite-lsp]
+command = "ignite-lsp"
