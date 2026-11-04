@@ -9,7 +9,7 @@ language-servers = ["ignite-lsp"]
 
 [[grammar]]
 name = "ignite"
-source = { git = "https://github.com/ignite-lang/ignite-helix", rev = "<after push>", subpath = "tree-sitter-ignite" }
+source = { git = "https://github.com/ignite-lang/ignite-helix", rev = "9a95ed0e2f6c4a17ab55345814a26e4f3d99ba99", subpath = "tree-sitter-ignite" }
 
 [language-server.ignite-lsp]
 command = "ignite-lsp"
