@@ -32,6 +32,21 @@ Syntax highlighting, indentation and text objects for [Ignite](https://github.co
 The language server entry expects an `ignite-lsp` binary on `PATH`; without it Helix still
 highlights.
 
+## Diagnostics: the ignite-lsp server
+
+`ignite-lsp` is a language server written in Ignite; until it has its own repository it is
+`examples/lsp/server.ignite` in the Ignite repository. It publishes the diagnostics of
+`ignite check` for the open buffer. Build it from an Ignite checkout and put it on `PATH`:
+
+```sh
+ignite build examples/lsp/server.ignite --out ~/.local/ignite-lsp
+export PATH="$HOME/.local/ignite-lsp/bin:$PATH"
+```
+
+It runs `ignite` from `PATH`; `--ignite /path/to/ignite` in `args` of
+`[language-server.ignite-lsp]` picks another build. Check: `hx --health ignite` lists `ignite-lsp`
+with a path, and a type error in an open `.ignite` file is underlined.
+
 ## Hand-copied lists
 
 These lists are copied by hand from the Ignite compiler sources and go stale when the language
