@@ -34,13 +34,13 @@ highlights.
 
 ## Diagnostics: the ignite-lsp server
 
-`ignite-lsp` is a language server written in Ignite; until it has its own repository it is
-`examples/lsp/server.ignite` in the Ignite repository. It publishes the diagnostics of
-`ignite check` for the open buffer. Build it from an Ignite checkout and put it on `PATH`:
+`ignite-lsp` is a language server written in Ignite, in
+[ignite-lang/ignite-lsp](https://github.com/ignite-lang/ignite-lsp). It publishes the diagnostics
+of `ignite check` for the open buffer. Build it as that repository's README says
+(`task install-ignite`, then `task build`) and put it on `PATH`:
 
 ```sh
-ignite build examples/lsp/server.ignite --out ~/.local/ignite-lsp
-export PATH="$HOME/.local/ignite-lsp/bin:$PATH"
+export PATH="<ignite-lsp checkout>/target/ignite-lsp/bin:$PATH"
 ```
 
 It runs `ignite` from `PATH`; `--ignite /path/to/ignite` in `args` of
